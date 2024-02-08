@@ -7,7 +7,9 @@ random.seed(42)
 
 # List of 20 popular fruits
 fruits = ['Apple', 'Banana', 'Orange', 'Strawberry', 'Grapes', 'Watermelon', 'Mango', 'Pineapple', 'Peach', 'Cherry',
-          'Kiwi', 'Pear', 'Blueberry', 'Raspberry', 'Blackberry', 'Cantaloupe', 'Plum', 'Apricot', 'Pomegranate', 'Lemon']
+          'Kiwi', 'Pear', 'Blueberry', 'Raspberry', 'Blackberry', 'Cantaloupe', 'Plum', 'Apricot', 'Pomegranate',
+          'Lemon']
+
 
 # Function to generate synthetic data for each day of the week for each fruit
 def generate_fruit_sales_data(start_date, end_date):
@@ -81,12 +83,20 @@ def generate_fruit_sales_data(start_date, end_date):
                 quantity_sold = random.randint(80, 150)
                 price_per_unit = round(random.uniform(0.70, 1.50), 2)
 
-            
-            data.append([current_date, fruit_type, quantity_sold, price_per_unit])
+            discount = 0.0
+            price = price_per_unit
+            if current_date.day == 30:  
+                discount = round(random.uniform(0.15, 0.40), 2)
+
+            price_per_unit = price - (price * discount)
+            discounted_quantity_sold = quantity_sold + (quantity_sold * discount)
+
+            data.append([current_date, fruit_type, int(discounted_quantity_sold), round(price_per_unit, 2), discount])
 
         current_date += timedelta(days=1)
 
     return data
+
 
 # Set start and end dates
 start_date = datetime(2022, 1, 1)
