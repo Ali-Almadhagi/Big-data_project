@@ -76,12 +76,12 @@ class FruitPredictionApp:
 
     def display_data(self):
         if self.df is None:
-            tk.messagebox.showinfo("Data Not Loaded", "Please load data before viewing statistics.")
+            tk.messagebox.showinfo("Data Not Loaded", "Please load data before using this fuctunality.")
             return
 
     def stats_for_all_items(self):
         if self.df is None:
-            tk.messagebox.showinfo("Data Not Loaded", "Please load data before viewing statistics.")
+            tk.messagebox.showinfo("Data Not Loaded", "Please load data before viewing general statistics.")
             return
 
     def price_prediction(self):
